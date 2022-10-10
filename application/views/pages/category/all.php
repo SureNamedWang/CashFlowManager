@@ -52,7 +52,7 @@
             <div class="row">
                 <div class="card col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="card-body">
-                        <table class="display table table-striped" id="patients-datatables">
+                        <table class="display table table-striped" id="categories-datatables">
                             <thead>
                                 <th>Nama</th>
                                 <th>Tipe</th>

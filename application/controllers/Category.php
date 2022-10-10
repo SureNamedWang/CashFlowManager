@@ -28,7 +28,7 @@ class Category extends CI_Controller {
         $this->load->view('templates/navbar');
         $this->load->view('pages/category/all');
         $this->load->view('templates/sidebar');
-        $this->load->view('templates/footer');
+        $this->load->view('pages/category/footer');
     }
 
     // insert new category
