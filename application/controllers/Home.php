@@ -40,11 +40,11 @@ class Home extends CI_Controller {
                 $data['start_date'] = $from;
                 $data['end_date'] = $to;
 
-                $data['saldo'] = "Rp " . number_format($this->cashflow->getSaldo(),0,',','.');
-                $data['pengeluaran'] = "Rp " . number_format($this->cashflow->getPengeluaran(),0,',','.');
-                $data['pemasukan'] = "Rp " . number_format($this->cashflow->getPemasukan(),0,',','.');
-                $data['pengeluaran_pending'] = "Rp " . number_format($this->cashflow->getPengeluaranPending(),0,',','.');
-                $data['pemasukan_pending'] = "Rp " . number_format($this->cashflow->getPemasukanPending(),0,',','.');
+                $data['saldo'] = "Rp " . number_format($this->cashflow->getSaldo($from,$to),0,',','.');
+                $data['pengeluaran'] = "Rp " . number_format($this->cashflow->getPengeluaran($from,$to),0,',','.');
+                $data['pemasukan'] = "Rp " . number_format($this->cashflow->getPemasukan($from,$to),0,',','.');
+                $data['pengeluaran_pending'] = "Rp " . number_format($this->cashflow->getPengeluaranPending($from,$to),0,',','.');
+                $data['pemasukan_pending'] = "Rp " . number_format($this->cashflow->getPemasukanPending($from,$to),0,',','.');
                 $this->load->view('templates/header',$data);
                 $this->load->view('templates/navbar');
                 $this->load->view('pages/home/home');

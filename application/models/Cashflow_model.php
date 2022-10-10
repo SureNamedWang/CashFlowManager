@@ -13,7 +13,7 @@ class Cashflow_model extends CI_Model {
         $this->db->insert('cashflow',$data);
     }
 
-    public function getSaldo(){
+    public function getSaldo($from,$to){
         $sql = "SELECT SUM(x.inout) AS saldo
         FROM
         (
@@ -23,6 +23,7 @@ class Cashflow_model extends CI_Model {
         END AS 'inout' 
         FROM cashflow c
         WHERE c.is_deleted = 0
+        and c.created_date between '".$from." 00:00:01' and '".$to." 23:59:59'
         and c.is_approved = 1
         ) x";
         $query = $this->db->query($sql);
@@ -35,11 +36,12 @@ class Cashflow_model extends CI_Model {
         return $row->saldo;
     }
 
-    public function getPemasukan(){
+    public function getPemasukan($from,$to){
         $sql = "SELECT       
         SUM(c.nominal) AS 'total'    
         FROM cashflow c              
         WHERE c.is_deleted=0
+        and c.created_date between '".$from." 00:00:01' and '".$to." 23:59:59'
         AND c.is_approved=1
         AND c.tipe = 'in'";
 
@@ -52,11 +54,12 @@ class Cashflow_model extends CI_Model {
         return $row->total;
     }
 
-    public function getPengeluaran(){
+    public function getPengeluaran($from,$to){
         $sql = "SELECT       
         SUM(c.nominal) AS 'total'    
         FROM cashflow c              
         WHERE c.is_deleted=0
+        and c.created_date between '".$from." 00:00:01' and '".$to." 23:59:59'
         AND c.is_approved=1
         AND c.tipe = 'out'";
 
@@ -69,11 +72,12 @@ class Cashflow_model extends CI_Model {
         return $row->total;
     }
 
-    public function getPemasukanPending(){
+    public function getPemasukanPending($from,$to){
         $sql = "SELECT       
         SUM(c.nominal) AS 'total'    
         FROM cashflow c              
         WHERE c.is_deleted=0
+        and c.created_date between '".$from." 00:00:01' and '".$to." 23:59:59'
         AND c.is_approved=0
         AND c.tipe = 'in'";
 
@@ -86,11 +90,12 @@ class Cashflow_model extends CI_Model {
         return $row->total;
     }
 
-    public function getPengeluaranPending(){
+    public function getPengeluaranPending($from,$to){
         $sql = "SELECT       
         SUM(c.nominal) AS 'total'    
         FROM cashflow c              
         WHERE c.is_deleted=0
+        and c.created_date between '".$from." 00:00:01' and '".$to." 23:59:59'
         AND c.is_approved=0
         AND c.tipe = 'out'";
 
