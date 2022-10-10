@@ -44,4 +44,33 @@ class Category_model extends CI_Model {
         $this->db->where('category_id',$id);
         $this->db->update('category',$data);
     }
+
+    //get Category In
+    //Home index()
+    function getCategoryIn(){
+        $this->db->where('is_deleted',0);
+        $this->db->where('tipe','in');
+        $query = $this->db->get('category');
+
+        return $query->result();
+    }
+
+    //get Category Out
+    //Home index()
+    function getCategoryOut(){
+        $this->db->where('is_deleted',0);
+        $this->db->where('tipe','out');
+        $query = $this->db->get('category');
+
+        return $query->result();
+    }
+
+    //get one category data
+    //Cashflow add()
+    function getCategoryData($id){
+        $this->db->where('category_id',$id);
+        $query = $this->db->get('category');
+
+        return $query->row();
+    }
 }
