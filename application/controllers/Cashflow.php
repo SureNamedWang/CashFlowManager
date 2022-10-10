@@ -68,6 +68,7 @@ class Cashflow extends CI_Controller {
         $data['end_date'] = $to;
 
         $data['cashflows'] = $this->cashflow->getCashFlow($from,$to);
+        $data['halaman'] = 'cashflow';
         $this->load->view('templates/header',$data);
         $this->load->view('templates/navbar');
         $this->load->view('pages/cashflow/cashflow');
