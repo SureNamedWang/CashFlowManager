@@ -2,7 +2,7 @@
     <div class="content">
         <div class="page-inner">
             <div class="page-header">
-                <h4 class="page-title">Lab Order Status</h4>
+                <h4 class="page-title">Category</h4>
             </div>
             <!-- ERROR MESSAGE -->
             <?php if(isset($_SESSION['message'])){ ?>
@@ -20,29 +20,34 @@
                 </div>
             </div>
             <?php } ?>
-            <!-- END OF ERROR MESSAGE -->
-            <!-- FORM SEND SMS -->
+            <!-- ERROR MESSAGE END -->
+
+            <!-- FORM ADD CATEGORY -->
             <div class="row">
                 <div class="card col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="card-body">
-                        <div class="card-title mb-3">FORM KIRIM SMS</div>
-                        <form class="row" method="POST" action="<?php echo base_url();?>SMS/send">
-                            <div class="form-group col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                <label for="nomor">Nomor Tujuan</label>
-                                <input type="number" class="form-control" id="nomor" name="nomor" placeholder="0812345678910" min="0" required>
+                        <div class="card-title mb-3">FORM ADD CATEGORY</div>
+                        <form class="row" method="POST" action="<?php echo base_url();?>Category/add">
+                            <div class="form-group col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                <label for="nama">Nama Category</label>
+                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Category" required>
                             </div>
-                            <div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <label for="pesan">Pesan</label>
-                                <textarea class="form-control" id="pesan" name="pesan" rows="3" required></textarea>
+                            <div class="form-group col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                <label for="tipe">Tipe</label>
+                                <select class="form-control" id="tipe" name="tipe">
+                                    <option value="in" selected>Pemasukan</option>
+                                    <option value="out">Pengeluaran</option>
+                                </select>
                             </div>
                             <div class="form-group col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                <input type="submit" class="btn btn-primary" value="SEND SMS">
+                                <input type="submit" class="btn btn-primary btn-block" value="SAVE">
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <!-- END FORM SEND SMS -->
+            <!-- END FORM ADD CATEGORY -->
+
         </div>
         <!-- Modal -->
         <div class="modal fade" id="modalLoading" tabindex="-1" role="dialog" aria-labelledby="modalLoading" aria-hidden="true">
