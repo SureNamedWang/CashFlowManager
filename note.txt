@@ -1,0 +1,6 @@
+Si bapak hanya perlu membuka halaman home, dari sana ia bisa memasukkan transaksi yang terjadi
+Si bapak juga bisa melihat rangkuman dari semua transaksi di home
+Si anak dapat menambahkan kategori pemasukan/pengeluaran si bapak dari menu Category
+Si anak juga dapat menghapus category yang ada
+Si anak dapat melihat list semua transaksi yang dimasukkan si bapak di menu Cashflow
+Si anak juga dapat approve dan menghapus transaksi si bapak dari sana
