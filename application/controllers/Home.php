@@ -8,6 +8,7 @@ class Home extends CI_Controller {
                 $this->load->library('session');
                 $this->load->helper('form');
                 $this->load->model('Category_model','category');
+                $this->load->model('Cashflow_model','cashflow');
         }
 
         public function index()
@@ -23,6 +24,27 @@ class Home extends CI_Controller {
                 $data['category_in'] = $this->category->getCategoryIn();
                 $data['category_out'] = $this->category->getCategoryOut();
                 $data['halaman']='home';
+
+                $now = date('Y-m-d');
+                $firstdate = date('Y-01-01');
+
+                $from = $this->input->get('from');
+                $to = $this->input->get('to');
+                if($from==null){
+                        $from=$firstdate;
+                }
+                if($to==null){
+                        $to = $now;
+                }
+ 
+                $data['start_date'] = $from;
+                $data['end_date'] = $to;
+
+                $data['saldo'] = "Rp " . number_format($this->cashflow->getSaldo(),0,',','.');
+                $data['pengeluaran'] = "Rp " . number_format($this->cashflow->getPengeluaran(),0,',','.');
+                $data['pemasukan'] = "Rp " . number_format($this->cashflow->getPemasukan(),0,',','.');
+                $data['pengeluaran_pending'] = "Rp " . number_format($this->cashflow->getPengeluaranPending(),0,',','.');
+                $data['pemasukan_pending'] = "Rp " . number_format($this->cashflow->getPemasukanPending(),0,',','.');
                 $this->load->view('templates/header',$data);
                 $this->load->view('templates/navbar');
                 $this->load->view('pages/home/home');
