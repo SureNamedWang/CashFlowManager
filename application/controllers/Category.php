@@ -20,6 +20,10 @@ class Category extends CI_Controller {
         }
         session_destroy();
         $data['halaman']='category';
+
+        //get all categories
+        $data['categories'] = $this->category->getAll();
+
         $this->load->view('templates/header',$data);
         $this->load->view('templates/navbar');
         $this->load->view('pages/category/all');
@@ -53,6 +57,23 @@ class Category extends CI_Controller {
 
         $this->category->insert($data_insert);
         $_SESSION['message'] = "Category baru telah berhasil tersimpan";
+        redirect(base_url()."Category/");
+    }
+
+    // delete category
+    // List Category Datatable
+    public function delete(){
+        $id = $this->input->post('id');
+        $created = new DateTime("now",new DateTimeZone("Asia/Jakarta"));
+        $created = $created->format('Y-m-d H:i:s');
+
+        $data_update = array(
+            "is_deleted" => 1,
+            "deleted_date" => $created,
+        );
+        $this->category->delete($id,$data_update);
+
+        $_SESSION['message'] = "Category telah berhasil dihapus";
         redirect(base_url()."Category/");
     }
 }

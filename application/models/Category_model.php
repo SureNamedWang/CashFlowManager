@@ -7,6 +7,8 @@ class Category_model extends CI_Model {
         $this->load->library('session');
     }
 
+    //check existing category
+    //Category add()
     function checkNama($nama,$tipe){
         $this->db->where('nama',$nama);
         $this->db->where('tipe',$tipe);
@@ -25,5 +27,21 @@ class Category_model extends CI_Model {
     //Category add()
     function insert($data){
         $this->db->insert('category',$data);
+    }
+
+    //get all categories
+    //Category index()
+    function getAll(){
+        $this->db->where('is_deleted',0);
+        $query = $this->db->get('category');
+
+        return $query->result();
+    }
+
+    //delete category
+    //Category delete()
+    function delete($id,$data){
+        $this->db->where('category_id',$id);
+        $this->db->update('category',$data);
     }
 }

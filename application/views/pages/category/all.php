@@ -48,6 +48,38 @@
             </div>
             <!-- END FORM ADD CATEGORY -->
 
+            <!-- LIST CATEGORY DATATABLE -->
+            <div class="row">
+                <div class="card col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class="card-body">
+                        <table class="display table table-striped" id="patients-datatables">
+                            <thead>
+                                <th>Nama</th>
+                                <th>Tipe</th>
+                                <th>Aksi</th>
+                            </thead>
+                            <tbody>
+                                <?php foreach($categories as $category){
+                                ?>
+                                    <tr>
+                                        <td><?php echo $category->nama; ?></td>
+                                        <td><?php echo $category->tipe; ?></td>
+                                        <td>
+                                            <form method="post" action="<?php echo base_url()?>Category/delete">
+                                                <input type="hidden" name="id" value="<?php echo $category->category_id; ?>"> 
+                                                <input type="submit" class="btn btn-danger btn-round" value="DELETE">
+                                            </form>
+                                            
+                                        </td>
+                                    </tr>
+                                <?php
+                                } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- END LIST CATEGORY DATATABLE -->
         </div>
         <!-- Modal -->
         <div class="modal fade" id="modalLoading" tabindex="-1" role="dialog" aria-labelledby="modalLoading" aria-hidden="true">
